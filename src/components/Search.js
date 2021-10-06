@@ -1,6 +1,6 @@
 import { BiSearch , BiCaretDown , BiCheck} from "react-icons/bi";
 import { useState } from "react";
-import { keyframes } from "tailwindcss/defaultTheme";
+
 
 const Dropdown =({toggleInformationfromSearch}) =>{
     if(!toggleInformationfromSearch){
@@ -29,13 +29,14 @@ const Dropdown =({toggleInformationfromSearch}) =>{
     </div>
     )
 }
-const Search = ({inputHandler}) =>{
+const Search = ({inputHandler , query}) =>{
     let [toggleSort , setToggleSort] = useState(false)
     
-    function inputHandler(event){
+    // function inputHandler(event){
         
-        console.log(event.target.value);
-    }
+    //     console.log(event.target.value);
+    // }
+    
     //sort
     function sortByButton(){
       setToggleSort(!toggleSort)
@@ -47,7 +48,7 @@ const Search = ({inputHandler}) =>{
           <BiSearch />
           <label htmlFor="query" className="sr-only" />
         </div>
-        <input type="text" name="query" id="query" onChange={inputHandler}
+        <input type="text" name="query" id="query" onChange={(event)=>{inputHandler(event.target.value)}} 
           className="pl-8 rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300" placeholder="Search" />
         <div className="absolute inset-y-0 right-0 flex items-center">
           <div>
@@ -64,6 +65,7 @@ const Search = ({inputHandler}) =>{
     </div>
   )
 }
+
 
 
 export default Search;
